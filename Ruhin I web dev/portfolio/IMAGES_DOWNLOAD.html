@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Images - Download Helper</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 30px;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            color: #1a1a1a;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .image-card {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .image-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .image-card h3 {
+            color: #1a1a1a;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .filename {
+            background-color: #e8e8e8;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .link-button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #1a1a1a;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid #1a1a1a;
+        }
+
+        .link-button:hover {
+            background-color: #4a4a4a;
+            border-color: #4a4a4a;
+        }
+
+        .link-button.secondary {
+            background-color: transparent;
+            color: #1a1a1a;
+        }
+
+        .link-button.secondary:hover {
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        .source-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .source-unsplash {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .source-pexels {
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        .source-pixabay {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .instructions {
+            background-color: #f0f4ff;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .instructions h3 {
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            color: #333;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .checklist {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .checklist h3 {
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist-item input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .checklist-item input:checked + label {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .footer-note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 30px;
+            font-size: 0.95rem;
+        }
+
+        .footer-note strong {
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Portfolio Images - Download Helper</h1>
+        <p class="subtitle">Click to view and download high-quality, copyright-free images for your portfolio</p>
+
+        <div class="instructions">
+            <h3>📥 Quick Download Guide</h3>
+            <ol>
+                <li>Click the image link (opens in new tab)</li>
+                <li>Download the image (look for download button)</li>
+                <li>Save to your <code>portfolio/images/</code> folder</li>
+                <li>Use the exact filename provided</li>
+                <li>All done! Images are copyright-free, no attribution needed</li>
+            </ol>
+        </div>
+
+        <!-- HERO & BANNER IMAGES -->
+        <div class="section">
+            <h2>🎯 Hero & Banner Images</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <h3>hero-banner.jpg</h3>
+                    <p class="description">Modern web development workspace</p>
+                    <div>
+                        <span class="source-badge source-unsplash">Unsplash</span>
+                        <span class="source-badge source-unsplash">Unsplash</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/laptop-and-graphics-tablet-on-desk-uHVRvDr7pg0" target="_blank" class="link-button">Option 1</a>
+                        <a href="https://unsplash.com/photos/person-using-macbook-air-on-desk-beside-monitor-6PF6DgVo6Mw" target="_blank" class="link-button secondary">Option 2</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>services-hero.jpg</h3>
+                    <p class="description">Professional team collaboration</p>
+                    <div>
+                        <span class="source-badge source-unsplash">Unsplash</span>
+                        <span class="source-badge source-pexels">Pexels</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/people-sitting-on-chair-with-laptop-3c3a8SEfH3E" target="_blank" class="link-button">Option 1</a>
+                        <a href="https://www.pexels.com/photo/group-of-people-in-conference-room-3183170/" target="_blank" class="link-button secondary">Option 2</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>contact-image.jpg</h3>
+                    <p class="description">Friendly communication/connection</p>
+                    <div>
+                        <span class="source-badge source-unsplash">Unsplash</span>
+                        <span class="source-badge source-pexels">Pexels</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/woman-holding-smartphone-and-cup-of-tea-4x7pxzYasYk" target="_blank" class="link-button">Option 1</a>
+                        <a href="https://www.pexels.com/photo/woman-in-white-long-sleeved-shirt-3807517/" target="_blank" class="link-button secondary">Option 2</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FEATURE/GUARANTEE IMAGES -->
+        <div class="section">
+            <h2>✨ Guarantee Section Images</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <h3>quality-guarantee.jpg</h3>
+                    <p class="description">High quality/excellence concept</p>
+                    <div>
+                        <span class="source-badge source-unsplash">Unsplash</span>
+                        <span class="source-badge source-pixabay">Pixabay</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/person-marking-check-mark-on-list-JJUJwKxsqYI" target="_blank" class="link-button">Option 1</a>
+                        <a href="https://pixabay.com/photos/checkmark-check-quality-stamp-verified-3640373/" target="_blank" class="link-button secondary">Option 2</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>responsive-design.jpg</h3>
+                    <p class="description">Responsive design/multiple devices</p>
+                    <div>
+                        <span class="source-badge source-unsplash">Unsplash</span>
+                        <span class="source-badge source-pexels">Pexels</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/devices-on-white-table-MWVcSwMSbzU" target="_blank" class="link-button">Option 1</a>
+                        <a href="https://www.pexels.com/photo/smartphone-and-tablet-gadgets-on-flat-lay-13688920/" target="_blank" class="link-button secondary">Option 2</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>performance.jpg</h3>
+                    <p class="description">Speed/optimization concept</p>
+                    <div>
+                        <span class="source-badge source-unsplash">Unsplash</span>
+                        <span class="source-badge source-pixabay">Pixabay</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/lightning-strike-during-night-time-pNhVFYvKmW0" target="_blank" class="link-button">Option 1</a>
+                        <a href="https://pixabay.com/photos/rocket-speed-fast-flames-flight-1410357/" target="_blank" class="link-button secondary">Option 2</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECT SHOWCASE -->
+        <div class="section">
+            <h2>🖼️ Featured Projects</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <h3>project-1.jpg</h3>
+                    <p class="description">E-commerce Platform</p>
+                    <div>
+                        <span class="source-badge source-unsplash">Unsplash</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/mockups-of-the-three-iphone-and-android-devices-S_VCmO_bfn0" target="_blank" class="link-button">Open Image</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>project-2.jpg</h3>
+                    <p class="description">Corporate Website</p>
+                    <div>
+                        <span class="source-badge source-unsplash">Unsplash</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/three-women-standing-near-white-wall-Y6lzwxJCh-0" target="_blank" class="link-button">Open Image</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>project-3.jpg</h3>
+                    <p class="description">Creative Portfolio</p>
+                    <div>
+                        <span class="source-badge source-unsplash">Unsplash</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/person-using-macbook-pro-and-holding-cup-beside-window-xrVDYwRN3Ys" target="_blank" class="link-button">Open Image</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROFILE -->
+        <div class="section">
+            <h2>👤 Profile Photo</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <h3>profile-photo.jpg</h3>
+                    <p class="description">Professional headshot for About page</p>
+                    <div>
+                        <span class="source-badge source-unsplash">Unsplash</span>
+                        <span class="source-badge source-pexels">Pexels</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/portrait-of-a-man-smiling-at-the-camera-OjXpzhEY8cQ" target="_blank" class="link-button">Option 1 (Male)</a>
+                        <a href="https://unsplash.com/photos/woman-smiling-while-holding-phone-outside-2JH18K5PcC4" target="_blank" class="link-button secondary">Option 2 (Female)</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-note">
+                <strong>💡 Tip:</strong> Use your actual professional photo if available. These are alternatives for demonstration purposes.
+            </div>
+        </div>
+
+        <!-- EXPERTISE ICONS -->
+        <div class="section">
+            <h2>🎯 Expertise Icons</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <h3>html-css-icon.jpg</h3>
+                    <p class="description">Code/Programming</p>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/close-up-of-source-code-d_5CKwMx_qY" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>javascript-icon.jpg</h3>
+                    <p class="description">JavaScript coding</p>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/monitor-showing-java-programming-language-text-LWvh9mMcJWA" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>responsive-icon.jpg</h3>
+                    <p class="description">Multiple devices</p>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/devices-on-white-table-MWVcSwMSbzU" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>web-performance-icon.jpg</h3>
+                    <p class="description">Performance metrics</p>
+                    <div class="links">
+                        <a href="https://pixabay.com/photos/performance-metrics-business-3786658/" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>seo-icon.jpg</h3>
+                    <p class="description">SEO optimization</p>
+                    <div class="links">
+                        <a href="https://pixabay.com/photos/seo-search-optimization-marketing-4111037/" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>ux-design-icon.jpg</h3>
+                    <p class="description">UX/Design</p>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/person-pointing-at-laptop-computer-monitor-3183170/" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVICES ICONS -->
+        <div class="section">
+            <h2>💼 Services Icons</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <h3>responsive-website-icon.jpg</h3>
+                    <p class="description">Responsive design</p>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/person-holding-smartphone-and-tablet-looking-at-designs-Y8MFEXJb3q8" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>ecommerce-icon.jpg</h3>
+                    <p class="description">E-commerce/Shopping</p>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/woman-in-white-tank-top-holding-black-digital-device-pAx4-s-wBpw" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>optimization-icon.jpg</h3>
+                    <p class="description">Performance</p>
+                    <div class="links">
+                        <a href="https://pixabay.com/photos/optimization-performance-monitoring-4113619/" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>web-maintenance-icon.jpg</h3>
+                    <p class="description">Maintenance/Tools</p>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/person-holding-silver-and-black-wrench-D1YRlYknc9s" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>landing-page-icon.jpg</h3>
+                    <p class="description">Target/Conversion</p>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/target-with-arrow-in-the-middle-of-yellow-and-white-background-WRH6B_3lFEE" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>consulting-icon.jpg</h3>
+                    <p class="description">Business consultation</p>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/people-sitting-on-chair-with-laptop-3c3a8SEfH3E" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VALUES & BENEFITS -->
+        <div class="section">
+            <h2>⭐ Values & Benefits Icons</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <h3>quality-icon.jpg</h3>
+                    <p class="description">Quality</p>
+                    <div class="links">
+                        <a href="https://pixabay.com/photos/check-quality-stamp-verified-3640373/" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>communication-icon.jpg</h3>
+                    <p class="description">Communication</p>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/group-of-people-using-laptop-3c3a8SEfH3E" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>innovation-icon.jpg</h3>
+                    <p class="description">Innovation/Ideas</p>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/light-bulb-turned-on-in-dark-room-mr0nOMqkdvI" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>expertise-icon.jpg</h3>
+                    <p class="description">Expertise/Knowledge</p>
+                    <div class="links">
+                        <a href="https://pixabay.com/photos/expert-expertise-knowledge-skills-2027651/" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>timeline-icon.jpg</h3>
+                    <p class="description">Speed/Timeline</p>
+                    <div class="links">
+                        <a href="https://pixabay.com/photos/fast-speed-stopwatch-clock-time-2618705/" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>support-icon.jpg</h3>
+                    <p class="description">Support/Help</p>
+                    <div class="links">
+                        <a href="https://unsplash.com/photos/smiling-businesswoman-posing-while-using-laptop-lUKJJpNnB4c" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>results-icon.jpg</h3>
+                    <p class="description">Results/Growth</p>
+                    <div class="links">
+                        <a href="https://pixabay.com/photos/growth-chart-success-profit-rising-3786658/" target="_blank" class="link-button">Open</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOWNLOAD CHECKLIST -->
+        <div class="section">
+            <h2>✅ Download Checklist</h2>
+            <p style="margin-bottom: 20px; color: #666;">Check off each image as you download it:</p>
+            
+            <div class="checklist">
+                <h3>HERO & BANNER</h3>
+                <div class="checklist-grid">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="hero-banner">
+                        <label for="hero-banner">hero-banner.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="services-hero">
+                        <label for="services-hero">services-hero.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="contact-image">
+                        <label for="contact-image">contact-image.jpg</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checklist" style="margin-top: 20px;">
+                <h3>FEATURES</h3>
+                <div class="checklist-grid">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="quality-guarantee">
+                        <label for="quality-guarantee">quality-guarantee.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="responsive-design">
+                        <label for="responsive-design">responsive-design.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="performance">
+                        <label for="performance">performance.jpg</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checklist" style="margin-top: 20px;">
+                <h3>PROJECTS</h3>
+                <div class="checklist-grid">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="project-1">
+                        <label for="project-1">project-1.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="project-2">
+                        <label for="project-2">project-2.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="project-3">
+                        <label for="project-3">project-3.jpg</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checklist" style="margin-top: 20px;">
+                <h3>PROFILE & ICONS (20 total)</h3>
+                <div class="checklist-grid">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="profile-photo">
+                        <label for="profile-photo">profile-photo.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="html-css">
+                        <label for="html-css">html-css-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="javascript">
+                        <label for="javascript">javascript-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="responsive-icon">
+                        <label for="responsive-icon">responsive-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="web-perf">
+                        <label for="web-perf">web-performance-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="seo">
+                        <label for="seo">seo-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="ux">
+                        <label for="ux">ux-design-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="responsive-web">
+                        <label for="responsive-web">responsive-website-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="ecommerce">
+                        <label for="ecommerce">ecommerce-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="optimization">
+                        <label for="optimization">optimization-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="maintenance">
+                        <label for="maintenance">web-maintenance-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="landing">
+                        <label for="landing">landing-page-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="consulting">
+                        <label for="consulting">consulting-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="quality">
+                        <label for="quality">quality-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="communication">
+                        <label for="communication">communication-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="innovation">
+                        <label for="innovation">innovation-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="expertise">
+                        <label for="expertise">expertise-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="timeline">
+                        <label for="timeline">timeline-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="support">
+                        <label for="support">support-icon.jpg</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="results">
+                        <label for="results">results-icon.jpg</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note" style="margin-top: 40px;">
+            <strong>✅ After downloading all images:</strong>
+            <ol style="margin-top: 10px; margin-left: 20px;">
+                <li>Save all images to your <code>portfolio/images/</code> folder</li>
+                <li>Make sure filenames match exactly (case-sensitive)</li>
+                <li>Open <code>index.html</code> in your browser</li>
+                <li>Your portfolio will display all images perfectly!</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

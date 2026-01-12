@@ -1,0 +1,215 @@
+{
+  "portfolio": {
+    "name": "Ruhin's Web Development Portfolio",
+    "version": "1.0.0",
+    "description": "A professional, responsive web development portfolio",
+    "author": "Ruhin",
+    "contact": {
+      "email": "chowdhuryruhin196@gmail.com",
+      "phone": "+8801345254563",
+      "location": "Available for remote projects worldwide"
+    },
+    "colors": {
+      "primary": "#1a1a1a",
+      "secondary": "#ffffff",
+      "accent": "#4a4a4a",
+      "lightGray": "#f5f5f5",
+      "borderColor": "#e0e0e0",
+      "textDark": "#2c2c2c",
+      "textLight": "#666666"
+    },
+    "pages": {
+      "home": {
+        "file": "index.html",
+        "title": "Web Development Portfolio - Professional Web Solutions",
+        "sections": [
+          "Hero",
+          "Guarantee",
+          "Featured Work",
+          "Skills Proof",
+          "CTA"
+        ]
+      },
+      "about": {
+        "file": "pages/about.html",
+        "title": "About Me - Ruhin's Web Development Portfolio",
+        "sections": [
+          "Hero",
+          "Personal Bio",
+          "Journey Timeline",
+          "Expertise",
+          "Tools & Technologies",
+          "Values",
+          "CTA"
+        ]
+      },
+      "services": {
+        "file": "pages/services.html",
+        "title": "Services - Ruhin's Web Development Portfolio",
+        "sections": [
+          "Hero",
+          "Core Services",
+          "Process",
+          "Packages",
+          "Why Choose",
+          "Contact Form",
+          "FAQ",
+          "Final CTA"
+        ]
+      }
+    },
+    "services": [
+      {
+        "name": "Responsive Website Design",
+        "description": "Custom-built websites that look stunning on all devices"
+      },
+      {
+        "name": "E-commerce Solutions",
+        "description": "Build your online store with a professional e-commerce website"
+      },
+      {
+        "name": "Website Optimization",
+        "description": "Improve your existing website's performance and user experience"
+      },
+      {
+        "name": "Website Maintenance & Support",
+        "description": "Keep your website running smoothly with ongoing maintenance"
+      },
+      {
+        "name": "High-Converting Landing Pages",
+        "description": "Create targeted landing pages designed to convert visitors"
+      },
+      {
+        "name": "Web Development Consulting",
+        "description": "Expert advice on your web project goals and strategy"
+      }
+    ],
+    "packages": [
+      {
+        "name": "Starter",
+        "pages": "3-5",
+        "features": [
+          "Mobile-first design",
+          "Fast-loading pages",
+          "Cross-browser compatibility",
+          "Modern, clean aesthetics"
+        ],
+        "description": "Perfect for small businesses and portfolios"
+      },
+      {
+        "name": "Professional",
+        "pages": "6-10",
+        "features": [
+          "Fully responsive",
+          "Advanced features",
+          "SEO optimization",
+          "2 rounds of revisions",
+          "2 months support"
+        ],
+        "description": "Ideal for growing businesses",
+        "featured": true
+      },
+      {
+        "name": "Enterprise",
+        "pages": "Unlimited",
+        "features": [
+          "Custom features",
+          "E-commerce ready",
+          "Advanced optimization",
+          "Unlimited revisions",
+          "6 months support"
+        ],
+        "description": "For complex, custom solutions"
+      }
+    ],
+    "images": {
+      "hero": {
+        "hero-banner.jpg": "Main hero image - 1200x600px",
+        "services-hero.jpg": "Services page hero - 1200x600px"
+      },
+      "cards": {
+        "quality-guarantee.jpg": "Quality guarantee card - 400x300px",
+        "responsive-design.jpg": "Responsive design card - 400x300px",
+        "performance.jpg": "Performance optimization card - 400x300px",
+        "project-1.jpg": "Featured project 1 - 400x300px",
+        "project-2.jpg": "Featured project 2 - 400x300px",
+        "project-3.jpg": "Featured project 3 - 400x300px"
+      },
+      "profile": {
+        "profile-photo.jpg": "Profile photo - 500x500px"
+      },
+      "icons": {
+        "responsive-icon.jpg": "Responsive design icon - 100x100px",
+        "semantic-icon.jpg": "Semantic HTML icon - 100x100px",
+        "accessible-icon.jpg": "Accessibility icon - 100x100px",
+        "html-css-icon.jpg": "HTML/CSS expertise - 100x100px",
+        "javascript-icon.jpg": "JavaScript expertise - 100x100px",
+        "web-performance-icon.jpg": "Performance icon - 100x100px",
+        "seo-icon.jpg": "SEO icon - 100x100px",
+        "ux-design-icon.jpg": "UX Design icon - 100x100px",
+        "quality-icon.jpg": "Quality value - 100x100px",
+        "communication-icon.jpg": "Communication value - 100x100px",
+        "innovation-icon.jpg": "Innovation value - 100x100px",
+        "expertise-icon.jpg": "Expertise benefit - 80x80px",
+        "timeline-icon.jpg": "Timeline/speed icon - 80x80px",
+        "support-icon.jpg": "Support benefit - 80x80px",
+        "results-icon.jpg": "Results benefit - 80x80px"
+      },
+      "service-icons": {
+        "responsive-website-icon.jpg": "Responsive Website - 80x80px",
+        "ecommerce-icon.jpg": "E-commerce - 80x80px",
+        "optimization-icon.jpg": "Optimization - 80x80px",
+        "web-maintenance-icon.jpg": "Maintenance - 80x80px",
+        "landing-page-icon.jpg": "Landing Pages - 80x80px",
+        "consulting-icon.jpg": "Consulting - 80x80px"
+      },
+      "contact": {
+        "contact-image.jpg": "Contact section image - 400x300px"
+      }
+    },
+    "fonts": {
+      "family": "System fonts (San Francisco, Segoe UI, Roboto)",
+      "description": "Uses native system fonts for optimal performance and consistency"
+    },
+    "responsive": {
+      "breakpoints": {
+        "desktop": "1024px and above",
+        "tablet": "768px to 1023px",
+        "mobile": "480px to 767px",
+        "small-mobile": "below 480px"
+      }
+    },
+    "customization": {
+      "colors": {
+        "file": "styles.css",
+        "lines": "6-16",
+        "instruction": "Modify CSS variables in :root selector"
+      },
+      "typography": {
+        "file": "styles.css",
+        "lines": "31-50",
+        "instruction": "Edit font sizes, weights, and line heights"
+      },
+      "contact": {
+        "files": ["index.html", "pages/about.html", "pages/services.html"],
+        "instruction": "Search for email, phone, and location to update"
+      },
+      "content": {
+        "home": "index.html",
+        "about": "pages/about.html",
+        "services": "pages/services.html",
+        "instruction": "Edit text content directly in HTML files"
+      }
+    },
+    "deployment": {
+      "options": [
+        "GitHub Pages",
+        "Netlify",
+        "Vercel",
+        "Traditional Web Hosting",
+        "AWS S3 + CloudFront"
+      ],
+      "files": "All files in the portfolio directory"
+    }
+  }
+}
